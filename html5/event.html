@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件</title>
+		<script type="text/javascript">
+			function changeImg(){
+				var element = document.getElementById("myimg");
+				if (element.src.match("3333bb375934f5f012c073c81af4de49")){
+					element.src = "../img/d214671e120174c2582b1adacb84a044.gif";
+				}else {
+					element.src = "../img/3333bb375934f5f012c073c81af4de49.gif";
+				}
+			}
+			function mouseEnter(){
+				changeImg();
+			}
+			function mouseLeave(){
+				changeImg();
+			}
+			var color1 = 0Xf1;
+			function changeColor(){
+				color1++;
+				document.getElementById("ppp").style.color = "#"+color1;
+			}
+			
+			function checkInput(){
+				var num = document.getElementById("input1").value;
+				if (num=="" || isNaN(num)){
+					alert("请输入数字");
+				}
+			}
+			
+			function Test(){
+				var a = new String;
+				var b = new Number;
+				var c = new Boolean;
+				var d = new Array;
+				var e = new Object;
+			}
+			Test();
+			
+			function checkCookies(){
+				if (navigator.cookieEnabled){
+					alert("cookie enabled 已开启");
+				} else {
+					alert("cookie 被关闭");
+				}
+			}
+		</script>
+	</head>
+	<body onload="checkCookies()" onunload="alert('拜拜')">
+		<div id="main">
+		<img id="myimg" src="../img/3333bb375934f5f012c073c81af4de49.gif" onclick="changeImg()" onmouseenter="mouseEnter()" onmouseleave="mouseLeave()"/>
+		<p id="ppp"></p>
+		<button onclick="document.getElementById('ppp').style.color = 'red'">改变颜色</button>
+		<br />
+		<input id="input1" type="text" onfocus="this.style.backgroundColor='red'" onfocusout="this.style.backgroundColor='white'"/>
+		<button onclick="checkInput()">检查输入</button>
+		</div>
+		<script>
+			var main1 = document.getElementById("main");
+			var find = main1.getElementsByTagName("button");
+			document.write(document.cookie);
+			document.write("<br />");
+			var p1 = document.getElementById("ppp");
+			p1.innerHTML = Date();
+		</script>
+	</body>
+</html>

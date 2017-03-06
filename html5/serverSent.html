@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Server-Sent</title>
+	</head>
+	<body>
+		<h1>获取服务器时间更新</h1>
+		<p id="result"></p>
+	<script>
+		if(typeof(EventSource)!=="undefined")
+  		{
+  			var source=new EventSource("../php/demo_see.php");
+  			source.onmessage=function(event) {
+    			document.getElementById("result").innerHTML+=event.data + "<br />";
+    		};
+  		}
+		else {
+  			document.getElementById("result").innerHTML="抱歉，您的浏览器不支持 server-sent 事件 ...";
+  		}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>dragdrop</title>
+		<style type="text/css">
+			#box1, #box2, #box3{
+				padding: 6px;
+				margin: 6px;
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript">
+			function allowDrop(ev){
+				ev.preventDefault();
+				//console.log("allowDrop event target id "+ev.target.id);
+			}
+			function dragstart(ev){
+				//ev.dataTransfer.setData("Text",ev.target.id + "-" + ev.target.parentElement.id);
+				sessionStorage.setItem("dragItem", ev.target.id);
+				sessionStorage.setItem("parent", ev.target.parentElement.id);
+			}
+			function drop(ev)
+			{
+				ev.preventDefault();
+				//var data=ev.dataTransfer.getData("Text");
+				//var str=data.split('-');
+				var dragItem = document.getElementById(sessionStorage.getItem("dragItem"));
+				var dragItemParent = document.getElementById(sessionStorage.getItem("parent"));
+				var evTargetId = ev.target.id.toString();
+				if (evTargetId.indexOf("drag") == 0){
+					if (ev.target==dragItem){//复位
+						//dragItemParent.appendChild(dragItem);
+					}
+					else {
+						var otherParent = ev.target.parentElement;
+						otherParent.appendChild(dragItem);
+						dragItemParent.appendChild(ev.target);
+					}
+				}
+				else if (evTargetId.indexOf("box") == 0){
+					if (ev.target==dragItemParent){//复位
+						//dragItemParent.appendChild(dragItem);
+					}
+					else {
+						if (ev.target.childElementCount > 0){
+							var otherItem = ev.target.firstElementChild;
+							dragItemParent.appendChild(otherItem);
+						}
+						ev.target.appendChild(dragItem);
+					}
+				}
+				//document.getElementById(str[1]).appendChild(ev.target);
+				
+			}
+			function onclick11()
+			{
+				if (sessionStorage.clickcount){
+					sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+				} else {
+					sessionStorage.clickcount = 1;
+				}
+				document.getElementById("result").innerHTML = "在本 session 中，您已经点击这个按钮 " + sessionStorage.clickcount + " 次。";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<img src="../img/3333bb375934f5f012c073c81af4de49.gif" width="100" height="100" draggable="true" ondragstart="dragstart(event)" id="drag1"/>
+		</div>
+		<div id="box2" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<img src="../img/d214671e120174c2582b1adacb84a044.gif" width="100" height="100" draggable="true" ondragstart="dragstart(event)" id="drag2">
+		</div>
+		<div id="box3" ondrop="drop(event)" ondragover="allowDrop(event)">
+			
+		</div>
+		<input type="button" width="100" onclick="onclick11()"/>
+		<p id="result"></p>
+	</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html manifest="../appcahe/mydraw.appcache">
+	<head>
+		<meta charset="UTF-8">
+		<title>mydraw</title>
+		<style>
+			canvas {
+				background: yellow;
+				height: 300px;
+				width: 300px;
+				margin: 0 auto;
+				font-family: arial;
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript" src="../js/drawLine.js"></script>
+	</head>
+	<body>
+		<div>
+			<h2>一阶Bezier曲线</h2>
+			起点X：
+			<input type="number" id="oneStartX"/>
+			起点Y：
+			<input type="number" id="oneStartY"/>
+			<br />
+			终点X：
+			<input type="number" id="oneEndX"/>
+			终点Y：
+			<input type="number" id="oneEndY"/>
+			<br />
+			<input type="submit" onclick="oneSubmitOnClick()"/>
+			<br />
+			<br />
+			<canvas id="mycanvas"></canvas>
+			<script type="text/javascript">
+				var cvs = document.getElementById("mycanvas").getContext("2d");
+				var firstFlag = true;
+				function oneSubmitOnClick (){
+					if (!firstFlag){
+						cvs.clearRect(0, 0, 300, 300);
+					}					
+					var line1 = new Anim({ //实例
+ 					Node: cvs,
+ 					color: "#ff0000",
+ 					staX: document.getElementById("oneStartX").value,
+ 					staY: document.getElementById("oneStartY").value,
+ 					timing: 10,
+ 					lw: 1,});
+ 					line1.drawLine(document.getElementById("oneEndX").value, document.getElementById("oneEndY").value); //执行绘制
+ 					firstFlag = false;
+ 					//line1.drawTwoOrderBezier(100, 0, 300, 300);
+ 					//line1.drawThirdOrderBezier(100, 100, 200, 0, 300, 100);
+				}
+			</script>
+		</div>
+		<br />
+		<hr />
+		<div>
+			<h2>二阶Bezier曲线</h2>
+			起点X：
+			<input type="number" id="twoStartX"/>
+			起点Y：
+			<input type="number" id="twoStartY"/>
+			<br />
+			中间点X：
+			<input type="number" id="twoCenterX"/>
+			中间点Y：
+			<input type="number" id="twoCenterY"/>
+			<br />
+			终点X：
+			<input type="number" id="twoEndX"/>
+			终点Y：
+			<input type="number" id="twoEndY"/>
+			<br />
+			<input type="submit" onclick="twoSubmitOnClick()"/>
+			<br />
+			<br />
+			<canvas id="twocanvas"></canvas>
+			<script type="text/javascript">
+				var twocvs = document.getElementById("twocanvas").getContext("2d");
+				var firstFlag1 = true;
+				function twoSubmitOnClick (){
+					if (!firstFlag1){
+						twocvs.clearRect(0, 0, 300, 300);
+					}					
+					var line = new Anim({ //实例
+ 					Node: twocvs,
+ 					color: "#ff0000",
+ 					staX: document.getElementById("twoStartX").value,
+ 					staY: document.getElementById("twoStartY").value,
+ 					timing: 10,
+ 					lw: 1,});
+ 					line.drawTwoOrderBezier(document.getElementById("twoCenterX").value, document.getElementById("twoCenterY").value, document.getElementById("twoEndX").value, document.getElementById("twoEndY").value); //执行绘制
+ 					firstFlag1 = false;
+ 					//line1.drawTwoOrderBezier(100, 0, 300, 300);
+ 					//line1.drawThirdOrderBezier(100, 100, 200, 0, 300, 100);
+				}
+			</script>
+		</div>
+		<br />
+		<hr />
+		<div>
+			<h2>三阶Bezier曲线</h2>
+			起点X：
+			<input type="number" id="thirdStartX"/>
+			起点Y：
+			<input type="number" id="thirdStartY"/>
+			<br />
+			中间点1X：
+			<input type="number" id="thirdCenterX"/>
+			中间点1Y：
+			<input type="number" id="thirdCenterY"/>
+			<br />
+			中间点2X：
+			<input type="number" id="thirdCenter2X"/>
+			中间点2Y：
+			<input type="number" id="thirdCenter2Y"/>
+			<br />  
+			终点X：
+			<input type="number" id="thirdEndX"/>
+			终点Y：
+			<input type="number" id="thirdEndY"/>
+			<br />
+			<input type="submit" onclick="thirdSubmitOnClick()"/>
+			<br />
+			<br />
+			<canvas id="thirdcanvas"></canvas>
+			<script type="text/javascript">
+				var thirdcvs = document.getElementById("thirdcanvas").getContext("2d");
+				var firstFlag2 = true;
+				function thirdSubmitOnClick (){
+					if (!firstFlag2){
+						thirdcvs.clearRect(0, 0, 300, 300);
+					}					
+					var line = new Anim({ //实例
+ 					Node: thirdcvs,
+ 					color: "#ff0000",
+ 					staX: document.getElementById("thirdStartX").value,
+ 					staY: document.getElementById("thirdStartY").value,
+ 					timing: 10,
+ 					lw: 1,});
+ 					line.drawThirdOrderBezier(document.getElementById("thirdCenterX").value, document.getElementById("thirdCenterY").value, document.getElementById("thirdCenter2X").value, document.getElementById("thirdCenter2Y").value, document.getElementById("thirdEndX").value, document.getElementById("thirdEndY").value); //执行绘制
+ 					firstFlag2 = false;
+ 					//line1.drawTwoOrderBezier(100, 0, 300, 300);
+ 					//line1.drawThirdOrderBezier(100, 100, 200, 0, 300, 100);
+				}
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>显示鼠标坐标</title>
+		
+	<script type="text/javascript">
+	function cnvs_getCoordinates(e)
+	{
+		x=e.clientX;
+	  	y=e.clientY;
+		document.getElementById("xycoordinates").innerHTML="Coordinates: (" + x + "," + y + ")";
+	}	
+ 
+	function cnvs_clearCoordinates()
+	{
+		document.getElementById("xycoordinates").innerHTML="";
+	}
+	function drawRowLine(startx, starty, lenght){
+		var ilen=0;
+		function rowLine(){
+			if (ilen <= lenght){
+				cxt.moveTo(startx, starty);
+				cxt.lineTo(startx++,starty);
+				cxt.stroke();
+				++ilen;
+			}
+		}
+		setInterval(rowLine,5); 
+	}
+	</script>
+</head>
+<body style="margin: 0px;">
+	<p>把鼠标悬停在下面的矩形上可以看到坐标：</p>
+	<div id="coordiv" style="float:left;width:199px;height:99px;border:1px solid #c3c3c3" onmousemove="cnvs_getCoordinates(event)" onmouseout="cnvs_clearCoordinates()"></div>
+<br />
+<br />
+<br />
+<div id="xycoordinates"></div>
+<br />
+<br />
+<br />
+<hr />
+<canvas id="mycanvas" width="200" height="100"></canvas>
+<script type="text/javascript">
+	var c=document.getElementById("mycanvas");
+	var cxt=c.getContext("2d");
+	/*cxt.moveTo(10,10);
+	cxt.lineTo(150,50);
+	cxt.lineTo(10,50);
+	cxt.stroke();*/
+	cxt.fillStyle="#ff0000";
+	cxt.drawRowLine(50,50,100);
+	/*cxt.beginPath();
+	cxt.arc(50,50,20,0,Math.PI*2,false);
+	cxt.closePath();
+	cxt.fill();*/
+	
+</script>
+</body>
+</html>

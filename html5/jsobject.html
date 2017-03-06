@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>javascript Object</title>
+		<script>
+			function Car(id, speed){
+				this.id = id;
+				this.speed = speed;
+				
+				
+			}
+			function changeId(id){
+				this.id = id;
+				}
+			
+		</script>
+	</head>
+	<body>
+		<script>
+			var car = new Car(1, 100);
+			car.width = 1000;
+			car.height = 50;
+			console.log("car %o", car);
+			for (var tmp in car) {
+				console.log(car[tmp]);
+			}
+			var car1 = new Car(2, 120);
+			console.log("car1 %o", car1);
+			for (var tmp in car1) {
+				console.log(car1[tmp]);
+			}
+			var num = 1.333333;
+			console.log("%f",num.MAX_VALUE);
+		</script>
+	</body>
+</html>

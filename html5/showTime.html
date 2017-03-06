@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>显示时间</title>
+		<script type="text/javascript" src="../js/cookieTool.js"></script>
+		<script>
+			function showTime1() {
+				var d = new Date();
+				var year = d.getFullYear();
+				var month = checkNum(d.getMonth() + 1);
+				var day = checkNum(d.getDate());
+				var hour = checkNum(d.getHours());
+				var min = checkNum(d.getMinutes());
+				var sec = checkNum(d.getSeconds());
+				document.getElementById("timelabel").innerHTML = year + "/" + month + "/" + day + " 星期" + getWeek(d.getDay()) + " " + hour + ":" + min + ":" + sec;//"%4d/%2d/%2d %2d:%2d:%2d".format(year, month, day, hour, min, sec);
+				var v = setTimeout("showTime1()",500);
+				if (sec == 5)
+					clearTimeout(v);
+			}
+			
+			function checkNum(num){
+				if (num < 10){
+					return "0"+ num;
+				}
+				return num;
+			}
+			function getWeek(num){
+				var ary = new Array("日", "一", "二", "三", "四", "五", "六");
+				return ary[num];
+			}
+			function windowSize(){
+				var w = window.clientWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var h = window.clientHeight || document.documentElement.clientHeight || document.body.clientHeight;
+				document.getElementById("tips").innerHTML = "屏幕宽度:" + w + " 屏幕高度:" + h;
+				document.getElementById("tips1").innerHTML = "可用屏幕宽度:" + window.screen.availWidth + " 高度:" + window.screen.availHeight;
+				document.getElementById("tips2").innerHTML = window.location.href;
+				document.getElementById("tips3").innerHTML = document.cookie;
+			}
+		</script>
+	</head>
+	<body onload="showTime1()">
+		<p id="timelabel"></p>
+		<p id="tips"></p>
+		<p id="tips1"></p>
+		<p id="tips2"></p>
+		<p id="tips3"></p>
+		<button onclick="location.assign('http://www.baidu.com')">百度</button>
+		<br />
+		<button onclick="history.back()">上一页</button>
+		<br />
+		<button onclick="history.forward()">下一页</button>
+		<br />
+		<script>
+			windowSize();
+			/*var v = confirm("什么东东");
+			if (v){
+				alert("确定");
+			}else{
+				alert("取消");
+			}*/
+			//var text = prompt("请输入文字","name");
+			var mycookie = new CookieTool();
+			mycookie.setCookiesTotal("hehe", "111111", 1, "/", "127.0.0.1");
+		</script>
+	</body>
+</html>
